@@ -40,4 +40,26 @@ module my_first_package::my_module {
   public fun swords_created(self: &Forge): u64 {
     self.swords_created
   }
+
+  #[test]
+  public fun test_sword_create() {
+    use sui::transfer;
+
+    // Create a dummy context for testing
+    let ctx = tx_context::dummy();
+
+    // Create a sword
+    let sword = Sword {
+      id: object::new(&mut ctx),
+      magic: 42,
+      strength: 7,
+    };
+
+    // Check if accessor functions return correct values
+    assert!(magic(&sword) == 42 && strength(&sword) == 7, 1);
+
+    // Create a dummy address and transfer the sword
+    let dummy_address = @0xCAFE;
+    transfer::transfer(sword, dummy_address);
+  }
 }
