@@ -37,7 +37,7 @@ module my_first_package::my_module {
     self.strength
   }
 
-  public fun swords_created(self: &Sword): u64 {
+  public fun swords_created(self: &Forge): u64 {
     self.swords_created
   }
 }
